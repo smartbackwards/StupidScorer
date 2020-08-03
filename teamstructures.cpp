@@ -25,7 +25,7 @@ void output_data (player k){
 }
 //struct VisitLineup
 
-int main(int argc, char *argv[]) {
+int main() {
   player k[3];
   for (int i=0; i<3; i++){
     k[i]=input_data(k[i]);
