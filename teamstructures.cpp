@@ -1,18 +1,17 @@
 #include <fstream>
 #include <iostream>
 using namespace std;
-
+//structure of the player data
 struct Player {
     int number;
     string name;
     string surname;
 };
-
+//function that outputs the data of a player
 void output_data(Player k) {
-    cout << "SK"
-         << " | #" << k.number << " " << k.name << " " << k.surname;
+    cout << " | #" << k.number << " " << k.name << " " << k.surname;
 }
-
+//structure of the team data
 struct Team {
   Player k[28];
   Team(string Filename){
@@ -29,14 +28,27 @@ struct Team {
 
 int main() {
 
-string nazwa;
+string home_name, away_name;
+cout<<"Name the file with the away team: ";
+cin>>away_name;
+
 cout<<"Name the file with the home team: ";
-cin>>nazwa;
+cin>>home_name;
 
-Team HOME = Team (nazwa);
+Team AWAY = Team (away_name);
 
+Team HOME = Team (home_name);
+
+cout<<endl<<"Away team player list: "<<endl<<"================================"<<endl;
     for (int i = 0; i < 28; i++) {
-        output_data(HOME.k[i]);
+        cout << away_name;
+        output_data(AWAY.k[i]);
         cout << endl;
     }
+cout<<endl<<"Home team player list: "<<endl<<"================================"<<endl;
+  for (int i = 0; i < 28; i++) {
+      cout << home_name;
+      output_data(HOME.k[i]);
+      cout << endl;
+  }
 }
