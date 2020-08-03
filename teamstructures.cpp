@@ -15,8 +15,9 @@ void output_data(Player k) {
 
 struct Team {
   Player k[28];
-  Team(){
-    ifstream input_file ("SK.txt");
+  Team(string Filename){
+    Filename += ".txt";
+    ifstream input_file (Filename);
     Player player;
     int i = 0;
     while (input_file >> player.number >> player.name >> player.surname) {
@@ -28,10 +29,14 @@ struct Team {
 
 int main() {
 
-Team SK;
+string nazwa;
+cout<<"Name the file with the home team: ";
+cin>>nazwa;
+
+Team HOME = Team (nazwa);
 
     for (int i = 0; i < 28; i++) {
-        output_data(SK.k[i]);
+        output_data(HOME.k[i]);
         cout << endl;
     }
 }
