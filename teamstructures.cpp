@@ -6,6 +6,7 @@ struct Player {
 	int number;
 	string name;
 	string surname;
+	string position;
 };
 //function that outputs the data of a player
 void output_data(Player k) {
@@ -36,22 +37,37 @@ void output_number(Team homawa, int jernumber) {
 	}
 }
 //outputs away team's roster
-void away_team_roster(Team away, string teamname) {
+void team_roster(Team homeaway, string teamname) {
 	cout << endl << teamname << " player list: " << endl << "================================" << endl;
 	for (int i = 0; i < 28; i++) {
 		cout << teamname << " | #";
-		output_data(away.k[i]);
+		output_data(homeaway.k[i]);
 		cout << endl;
 	}
 }
 
-void home_team_roster(Team home, string teamname) {
-	cout << endl << teamname << " player list: " << endl << "================================" << endl;
+void position_implementer (string positionname, string positionshort, Team homawa, string teamname){
+	int positionnumber;
+	cout << "Type in the number of the " << positionname << ": ";
+	cin >> positionnumber;
 	for (int i = 0; i < 28; i++) {
-		cout << teamname << " | #";
-		output_data(home.k[i]);
-		cout << endl;
+		if (homawa.k[i].number == positionnumber) {
+			homawa.k[i].position = positionshort;
+			cout << homawa.k[i].name << " " << homawa.k[i].surname << " is now the " << teamname << " " << positionname << "!" << endl;
+		}
 	}
+}
+void defense_maker(Team homawa, string teamname){
+	team_roster(homawa, teamname);
+	position_implementer ("pitcher", "P", homawa, teamname);
+	position_implementer ("catcher", "C", homawa, teamname);
+	position_implementer ("first baseman", "1B", homawa, teamname);
+	position_implementer ("second baseman", "2B", homawa, teamname);
+	position_implementer ("third baseman", "3B", homawa, teamname);
+	position_implementer ("shortstop", "SS", homawa, teamname);
+	position_implementer ("left fielder", "LF", homawa, teamname);
+	position_implementer ("center fielder", "CF", homawa, teamname);
+	position_implementer ("right fielder", "RF", homawa, teamname);
 }
 
 int main() {
@@ -67,10 +83,10 @@ int main() {
 
 	Team HOME = Team(home_name);
 
-	away_team_roster(AWAY, away_name);
-	home_team_roster(HOME, home_name);
+//    team_roster(AWAY, away_name);
+//	home_team_roster(HOME, home_name);
 
-	output_number(HOME, 27);
-
-
+//	output_number(HOME, 27);
+	defense_maker(AWAY, away_name);
+	defense_maker(HOME, home_name);
 }
