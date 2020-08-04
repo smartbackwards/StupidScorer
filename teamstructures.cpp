@@ -48,13 +48,20 @@ void team_roster(Team homeaway, string teamname) {
 
 void position_implementer (string positionname, string positionshort, Team homawa, string teamname){
 	int positionnumber;
+	int helper = 0;
+		tryagain:
 	cout << "Type in the number of the " << positionname << ": ";
-	cin >> positionnumber;
+		cin >> positionnumber;
 	for (int i = 0; i < 28; i++) {
 		if (homawa.k[i].number == positionnumber) {
 			homawa.k[i].position = positionshort;
 			cout << homawa.k[i].name << " " << homawa.k[i].surname << " is now the " << teamname << " " << positionname << "!" << endl;
+			helper = 1;
 		}
+	}
+	if (helper == 0) {
+				cout << "There is no player on the roster with that number. Try again!" <<endl;
+				goto tryagain;
 	}
 }
 void defense_maker(Team homawa, string teamname){
