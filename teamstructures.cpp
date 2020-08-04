@@ -1,5 +1,6 @@
 #include <fstream>
 #include <iostream>
+#include <vector>
 using namespace std;
 //structure of the player data
 struct Player {
@@ -13,14 +14,14 @@ void output_data(Player k) {
 }
 //structure of the team data
 struct Team {
-	Player k[28];
+	vector<Player> k;
 	Team(string Filename) {
 		Filename += ".txt";
 		ifstream input_file(Filename);
 		Player player;
 		int i = 0;
 		while (input_file >> player.number >> player.name >> player.surname) {
-			k[i] = player;
+			k.push_back(player);
 			i++;
 		}
 	}
